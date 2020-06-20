@@ -43,6 +43,16 @@ public class InMemoryMealRepository implements MealRepository {
         return meals.save(meal);
     }
 
+    @PostConstruct
+    public void postConstruct() {
+        log.info("+++ PostConstruct");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        log.info("+++ PreDestroy");
+    }
+
     @Override
     public boolean delete(int id, int userId) {
         InMemoryBaseRepository<Meal> meals = usersMealsMap.get(userId);
